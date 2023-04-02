@@ -99,8 +99,8 @@ def getnumOfPostFanpage(driver, pageId, amount, filePath='posts.csv'):
 list_comments = []
 browser = initDriver()
 
-loginFacebook(browser, "cs232khcl@gmail.com", "definitelynotapassword")
-getnumOfPostFanpage(browser, "/UIT.Fanpage", 10, './csv/posts.csv')
+loginFacebook(browser, "youremail", "yourpassword")
+getnumOfPostFanpage(browser, "/facebookid", 10, './csv/posts.csv')
 
 for postId in readData('./csv/posts.csv'):
     list_comments.append(getAmountOfComments(browser, postId, 10, list_comments))
