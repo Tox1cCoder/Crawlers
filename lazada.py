@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Edge("./msedgedriver.exe")
+browser = webbrowser.Edge("./msedgedriver.exe")
 
 driver.get("https://www.lazada.vn/dien-thoai-di-dong/?page=1&spm=a2o4n.home.cate_1.1.19053bdcDsT4Jk")
 sleep(random.randint(5, 10))

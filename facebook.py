@@ -1,11 +1,37 @@
 import os
+import pickle
 from time import sleep
 
 import pandas as pd
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+
+
+def initDriver():
+    driver = webdriver.Edge(executable_path="./msedgedriver.exe")
+    return driver
+
+
+def loginFacebook(driver, username, password):
+    driver.get("https://facebook.com/")
+
+    # textUserName = driver.find_element(By.ID, "email")
+    # textUserName.send_keys(username)
+    #
+    # textPassword = driver.find_element(By.ID, "pass")
+    # textPassword.send_keys(password)
+    #
+    # loginButton = driver.find_element(By.NAME, "login")
+    # loginButton.click()
+    #
+    # sleep(10)
+    #
+    # pickle.dump(driver.get_cookies(), open("my_cookie.pkl", "wb"))
+
+    cookies = pickle.load(open("my_cookie.pkl", "rb"))
+    for cookie in cookies:
+        driver.add_cookie(cookie)
+
+    driver.get("https://facebook.com/")
 
 
 def readData(fileName):
@@ -21,29 +47,6 @@ def readData(fileName):
 def writeFile(fileName, content):
     with open(fileName, 'a', encoding='utf-8') as f:
         f.write(content + os.linesep)
-
-
-def initDriver():
-    # options = Options()
-    #
-    # options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
-    browser = webdriver.Edge(executable_path="./msedgedriver.exe")
-    return browser
-
-
-def loginFacebook(browser, username, password):
-    browser.get("https://mbasic.facebook.com/")
-
-    textUserName = browser.find_element(By.ID, "m_login_email")
-    textUserName.send_keys(username)
-
-    textPassword = browser.find_element(By.NAME, "pass")
-    textPassword.send_keys(password)
-
-    loginButton = browser.find_element(By.NAME, "login")
-    loginButton.send_keys(Keys.ENTER)
-
 
 
 def getContentComment(driver):
@@ -97,13 +100,13 @@ def getnumOfPostFanpage(driver, pageId, amount, filePath='posts.csv'):
 
 
 list_comments = []
-browser = initDriver()
+driver = initDriver()
 
-loginFacebook(browser, "youremail", "yourpassword")
-getnumOfPostFanpage(browser, "/facebookid", 10, './csv/posts.csv')
+loginFacebook(driver, "cs232khcl@gmail.com", "definitelynotapassword")
+getnumOfPostFanpage(driver, "/UIT.Fanpage", 10, './csv/posts.csv')
 
 for postId in readData('./csv/posts.csv'):
-    list_comments.append(getAmountOfComments(browser, postId, 10, list_comments))
+    list_comments.append(getAmountOfComments(driver, postId, 10, list_comments))
 
 data = {'List Comments': list_comments}
 pd.DataFrame(data).to_csv('./csv/comments.csv')
