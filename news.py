@@ -47,7 +47,7 @@ for link in all_title_link[:min(len(all_title_link), args['num_article'])]:
             btn = driver.find_element(By.ID, 'show_more_coment')
         except:
             break
-        driver.execute_script("arguments[0].click();", btn)
+        browser.execute_script("arguments[0].click();", btn)
 
     for cmt in list(element_comments):
         try:
