@@ -18,8 +18,6 @@ def download_image(url, folder_name, num):
 
 
 search_query = str(input("Please type the keyword..."))
-num_images = 10
-directory = "images"
 
 driver = webdriver.Edge("./msedgedriver.exe")
 url = f"https://www.google.com/search?q={search_query}&source=lnms&tbm=isch"
@@ -47,7 +45,7 @@ for i in range(1, len_containers + 1):
 
     timeStarted = time.time()
     while True:
-        imgXpath = """//*[@id="Sva75c"]/div[2]/div/div[2]/div[2]/div[2]/c-wiz/div/div[1]/div[2]/div[2]/div/a/img"""
+        imgXpath = """//*[@id="Sva75c"]/div[2]/div/div[2]/div[2]/div[2]/c-wiz/div/div[2]/div[1]/a/img[1]"""
         imageElement = driver.find_element_by_xpath(imgXpath)
         imageURL = imageElement.get_attribute('src')
 
