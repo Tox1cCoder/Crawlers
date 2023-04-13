@@ -43,7 +43,7 @@ print(f"There are {len(papers)} papers.")
 for id, paper in enumerate(papers, start=1):
     print(f"Crawling paper {id}...")
     title = driver.find_element_by_xpath(f'''//*[@id="gsc_a_b"]/tr[{id}]/td[1]/a''')
-    cite = driver.find_element_by_css_selector('.gsc_a_ac.gs_ibl')
+    cite = driver.find_element_by_xpath(f'''//*[@id="gsc_a_b"]/tr[{id}]/td[2]/a''')
     cited_by.append(cite.text)
     title.click()
     sleep(2)
