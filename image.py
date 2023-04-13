@@ -17,7 +17,7 @@ def download_image(url, folder_name, num):
             file.write(reponse.content)
 
 
-search_query = str(input("Please type the keyword..."))
+search_query = str(input("Please provide the keyword..."))
 
 driver = webdriver.Edge("./msedgedriver.exe")
 url = f"https://www.google.com/search?q={search_query}&source=lnms&tbm=isch"
