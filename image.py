@@ -35,7 +35,7 @@ for i in range(1, len_containers + 1):
     if i % 25 == 0:
         continue
 
-    xPath = f"""//*[@id="islrg"]/div[1]/div[{i}]"""
+    #xPath = f"""//*[@id="islrg"]/div[1]/div[{i}]"""
 
     previewImageXPath = f"""//*[@id="islrg"]/div[1]/div[{i}]/a[1]/div[1]/img"""
     previewImageElement = driver.find_element_by_xpath(previewImageXPath)
